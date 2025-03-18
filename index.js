@@ -21,7 +21,7 @@ if(args.a || args.allow) {
 main({
 	port: process.env.PORT || 8080,
 	workers: 4,
-	ssl: false,
+	ssl: true,
 	key: "./default.key",
 	cert: "./default.crt",
 });
