@@ -40,7 +40,7 @@ var Server = function Init(config) {
 	else {
 		opts.server = http.createServer(function(req, res) {
 			res.writeHead(200);
-			res.end("wsProxy running...\n");
+			res.end("Hello World!!!\n");
 		});
 
 		opts.server.listen(config.port)
