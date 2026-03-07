@@ -53,7 +53,9 @@ Proxy.prototype.clientData = function OnServerData(data) {
 	}
 
 	try {
-		this._tcp.write(data);
+		const msg = data.toString('utf-8');
+        const message = msg.endsWith('\n') ? msg : msg + '\n';
+		this._tcp.write(message);
 	}
 	catch(e) {}
 }
@@ -79,9 +81,8 @@ Proxy.prototype.serverData = function OnClientData(data) {
  * Clean up events/sockets
  */
 Proxy.prototype.close = function OnClose() {
+	mes.info("Connection closed from '%s' -> '%s'.", this._from, this._to);
 	if (this._tcp) {
-		// mes.info("Connection closed from '%s'.", this._to);
-
 		this._tcp.removeListener('close', this.close.bind(this) );
 		this._tcp.removeListener('error', this.close.bind(this) );
 		this._tcp.removeListener('data',  this.serverData.bind(this) );
@@ -89,8 +90,6 @@ Proxy.prototype.close = function OnClose() {
 	}
 
 	if (this._ws) {
-		// mes.info("Connection closed from '%s'.", this._from);
-
 		this._ws.removeListener('close',   this.close.bind(this) );
 		this._ws.removeListener('error',   this.close.bind(this) );
 		this._ws.removeListener('message', this.clientData.bind(this) );
