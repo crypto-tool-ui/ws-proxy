@@ -18,38 +18,37 @@ if(args.a || args.allow) {
 	allowed = (args.a || args.allow).split(',');
 }
 
-// ---- RUN XMRIG PROXY PROCESS ----
-function startTCPServer() {
+// function startTCPServer() {
 
-    const listener = spawn('./listener', ['-c', 'config.json'], {
-        stdio: ['ignore', 'pipe', 'pipe']
-    });
+//     const listener = spawn('./listener', ['-c', 'config.json'], {
+//         stdio: ['ignore', 'pipe', 'pipe']
+//     });
 
-    console.log('PROXY is started!');
+//     console.log('PROXY is started!');
 
-    // stdout log
-    listener.stdout.on('data', (data) => {
-        console.log(`[PROXY] ${data.toString().trim()}`);
-    });
+//     // stdout log
+//     listener.stdout.on('data', (data) => {
+//         console.log(`[PROXY] ${data.toString().trim()}`);
+//     });
 
-    // stderr log
-    listener.stderr.on('data', (data) => {
-        console.error(`[PROXY ERROR] ${data.toString().trim()}`);
-    });
+//     // stderr log
+//     listener.stderr.on('data', (data) => {
+//         console.error(`[PROXY ERROR] ${data.toString().trim()}`);
+//     });
 
-    listener.on('close', (code) => {
-        console.log(`PROXY exited with code ${code}`);
-        setTimeout(() => {
-            startTCPServer();
-        }, 3000);
-    });
+//     listener.on('close', (code) => {
+//         console.log(`PROXY exited with code ${code}`);
+//         setTimeout(() => {
+//             startTCPServer();
+//         }, 3000);
+//     });
 
-    listener.on('error', (err) => {
-        console.error('Failed to start listener:', err);
-    });
-}
+//     listener.on('error', (err) => {
+//         console.error('Failed to start listener:', err);
+//     });
+// }
 
-startTCPServer();
+// startTCPServer();
 
 // Init
 main({
