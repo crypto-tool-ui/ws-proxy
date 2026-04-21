@@ -52,7 +52,7 @@ if(args.a || args.allow) {
 
 // Init
 main({
-	port: process.env.PORT || 8080,
+	port: 8000,
 	workers: 2,
 	ssl: false,
 	key: "./default.key",
