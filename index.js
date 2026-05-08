@@ -19,7 +19,7 @@ if(args.a || args.allow) {
 
 // Init
 main({
-	port: 8000,
+	port: 3000,
 	workers: 4,
 	ssl: false,
 	key: "./default.key",
