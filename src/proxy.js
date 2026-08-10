@@ -8,8 +8,6 @@ var mes        = require('./message');
  * Constructor
  */
 var Proxy = function Constructor(ws) {
-	// const to = 'MTI3LjAuMC4xOjQ1Njc=';
-	// const to = "MTAzLjE4OC4xNjYuMjQ6NDU2Nw=="; //103.188.166.24:4567
 	const to = ws.upgradeReq.url.substr(1);
 	this._tcp;
 	this._from = ws.upgradeReq.connection.remoteAddress;
